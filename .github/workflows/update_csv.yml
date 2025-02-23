@@ -26,16 +26,6 @@ jobs:
             exit 1
           fi
 
-#      - name: Check CSV File Size
-#        id: check-csv
-#        run: |
-#          if [ -s data/new-data.csv ]; then
-#            echo "CSV file is not empty."
-#          else
-#            echo "CSV file is empty."
-#            exit 1
-#          fi
-
       - name: Strip CSV
         id: strip-csv
         run: |
@@ -183,21 +173,21 @@ jobs:
 
       - name: Overwrite CSV
         if: |
-          contains(env, 'DIFFERENT_IPC2s_CSV') && env.DIFFERENT_IPC2s_CSV == 'true' ||
-          contains(env, 'DIFFERENT_IPC2s_30day_CSV') && env.DIFFERENT_IPC2s_30day_CSV == 'true' ||
-          contains(env, 'DIFFERENT_IPC2s_90day_CSV') && env.DIFFERENT_IPC2s_90day_CSV == 'true' ||
-          contains(env, 'DIFFERENT_DNSC2Domains_CSV') && env.DIFFERENT_DNSC2Domains_CSV == 'true' ||
-          contains(env, 'DIFFERENT_domainC2s_CSV') && env.DIFFERENT_domainC2s_CSV == 'true' ||
-          contains(env, 'DIFFERENT_domainC2s_filter_abused_CSV') && env.DIFFERENT_domainC2s_filter_abused_CSV == 'true' ||
-          contains(env, 'DIFFERENT_domainC2s_90day_CSV') && env.DIFFERENT_domainC2s_90day_CSV == 'true' ||
-          contains(env, 'DIFFERENT_domainC2s_30day_CSV') && env.DIFFERENT_domainC2s_30day_CSV == 'true' ||
-          contains(env, 'DIFFERENT_domainC2s_30day_filter_abused_CSV') && env.DIFFERENT_domainC2s_30day_filter_abused_CSV == 'true' ||
-          contains(env, 'DIFFERENT_domainC2s_90day_filter_abused_CSV') && env.DIFFERENT_domainC2s_90day_filter_abused_CSV == 'true' ||
-          contains(env, 'DIFFERENT_unverified_IPC2s_CSV') && env.DIFFERENT_unverified_IPC2s_CSV == 'true' ||
-          contains(env, 'DIFFERENT_unverified_IPC2s_30day_CSV') && env.DIFFERENT_unverified_IPC2s_30day_CSV == 'true' ||
-          contains(env, 'DIFFERENT_unverified_IPC2s_90day_CSV') && env.DIFFERENT_unverified_IPC2s_90day_CSV == 'true' ||
-          contains(env, 'DIFFERENT_NordVPNIPs_CSV') && env.DIFFERENT_NordVPNIPs_CSV == 'true' ||
-          contains(env, 'DIFFERENT_ProtonVPNIPs_CSV') && env.DIFFERENT_ProtonVPNIPs_CSV == 'true'
+          env.DIFFERENT_IPC2s_CSV == 'true' ||
+          env.DIFFERENT_IPC2s_30day_CSV == 'true' ||
+          env.DIFFERENT_IPC2s_90day_CSV == 'true' ||
+          env.DIFFERENT_DNSC2Domains_CSV == 'true' ||
+          env.DIFFERENT_domainC2s_CSV == 'true' ||
+          env.DIFFERENT_domainC2s_filter_abused_CSV == 'true' ||
+          env.DIFFERENT_domainC2s_90day_CSV == 'true' ||
+          env.DIFFERENT_domainC2s_30day_CSV == 'true' ||
+          env.DIFFERENT_domainC2s_30day_filter_abused_CSV == 'true' ||
+          env.DIFFERENT_domainC2s_90day_filter_abused_CSV == 'true' ||
+          env.DIFFERENT_unverified_IPC2s_CSV == 'true' ||
+          env.DIFFERENT_unverified_IPC2s_30day_CSV == 'true' ||
+          env.DIFFERENT_unverified_IPC2s_90day_CSV == 'true' ||
+          env.DIFFERENT_NordVPNIPs_CSV == 'true' ||
+          env.DIFFERENT_ProtonVPNIPs_CSV == 'true'
         run: |
           [ "$DIFFERENT_IPC2s_CSV" = "true" ] && mv feeds/new-IPC2s.csv feeds/IPC2s.csv
           [ "$DIFFERENT_IPC2s_30day_CSV" = "true" ] && mv feeds/new-IPC2s-30day.csv feeds/IPC2s-30day.csv
@@ -238,17 +228,18 @@ jobs:
           
           timestamp=$(date +'%Y%m%d%H%M%S')
           branch_name="update-csv-$timestamp"
-
+          
           git checkout -b "$branch_name"
-
+          
+          # Nur geänderte Dateien hinzufügen
           [ "$DIFFERENT_IPC2s_CSV" = "true" ] && git add feeds/IPC2s.csv
           [ "$DIFFERENT_IPC2s_30day_CSV" = "true" ] && git add feeds/IPC2s-30day.csv
           [ "$DIFFERENT_IPC2s_90day_CSV" = "true" ] && git add feeds/IPC2s-90day.csv
           [ "$DIFFERENT_DNSC2Domains_CSV" = "true" ] && git add feeds/DNSC2Domains.csv
           [ "$DIFFERENT_domainC2s_CSV" = "true" ] && git add feeds/domainC2s.csv
-          [ "$DIFFERENT_domainC2s_30day_CSV" = "true" ] && git add feeds/domainC2s-30day.csv
-          [ "$DIFFERENT_domainC2s_90day_CSV" = "true" ] && git add feeds/domainC2s-90day.csv
           [ "$DIFFERENT_domainC2s_filter_abused_CSV" = "true" ] && git add feeds/domainC2s-filter-abused.csv
+          [ "$DIFFERENT_domainC2s_90day_CSV" = "true" ] && git add feeds/domainC2s-90day.csv
+          [ "$DIFFERENT_domainC2s_30day_CSV" = "true" ] && git add feeds/domainC2s-30day.csv
           [ "$DIFFERENT_domainC2s_30day_filter_abused_CSV" = "true" ] && git add feeds/domainC2s-30day-filter-abused.csv
           [ "$DIFFERENT_domainC2s_90day_filter_abused_CSV" = "true" ] && git add feeds/domainC2s-90day-filter-abused.csv
           [ "$DIFFERENT_unverified_IPC2s_CSV" = "true" ] && git add feeds/unverified/IPC2s.csv
@@ -257,10 +248,15 @@ jobs:
           [ "$DIFFERENT_NordVPNIPs_CSV" = "true" ] && git add vpn/NordVPNIPs.csv
           [ "$DIFFERENT_ProtonVPNIPs_CSV" = "true" ] && git add vpn/ProtonVPNIPs.csv
 
-          git commit -m "Update CSV file"
+          # Nur committen wenn es Änderungen gibt
+          if git diff --staged --quiet; then
+            echo "Keine Änderungen zum Committen"
+            exit 0
+          fi
 
+          git commit -m "Update CSV files"
           git push origin "$branch_name"
-
+          
           git checkout main
           git merge --no-ff "$branch_name"
           git push origin main
