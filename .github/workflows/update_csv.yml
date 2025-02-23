@@ -241,21 +241,21 @@ jobs:
 
           git checkout -b "$branch_name"
 
-          git add feeds/IPC2s.csv
-          git add feeds/IPC2s-30day.csv
-          git add feeds/IPC2s-90day.csv
-          git add feeds/DNSC2Domains.csv
-          git add feeds/domainC2s.csv
-          git add feeds/domainC2s-30day.csv
-          git add feeds/domainC2s-90day.csv 
-          git add feeds/domainC2s-filter-abused.csv
-          git add feeds/domainC2s-30day-filter-abused.csv
-          git add feeds/domainC2s-90day-filter-abused.csv
-          git add feeds/unverified/IPC2s.csv
-          git add feeds/unverified/IPC2s-30day.csv
-          git add feeds/unverified/IPC2s-90day.csv
-          git add vpn/NordVPNIPs.csv
-          git add vpn/ProtonVPNIPs.csv
+          [ "$DIFFERENT_IPC2s_CSV" = "true" ] && git add feeds/IPC2s.csv
+          [ "$DIFFERENT_IPC2s_30day_CSV" = "true" ] && git add feeds/IPC2s-30day.csv
+          [ "$DIFFERENT_IPC2s_90day_CSV" = "true" ] && git add feeds/IPC2s-90day.csv
+          [ "$DIFFERENT_DNSC2Domains_CSV" = "true" ] && git add feeds/DNSC2Domains.csv
+          [ "$DIFFERENT_domainC2s_CSV" = "true" ] && git add feeds/domainC2s.csv
+          [ "$DIFFERENT_domainC2s_30day_CSV" = "true" ] && git add feeds/domainC2s-30day.csv
+          [ "$DIFFERENT_domainC2s_90day_CSV" = "true" ] && git add feeds/domainC2s-90day.csv
+          [ "$DIFFERENT_domainC2s_filter_abused_CSV" = "true" ] && git add feeds/domainC2s-filter-abused.csv
+          [ "$DIFFERENT_domainC2s_30day_filter_abused_CSV" = "true" ] && git add feeds/domainC2s-30day-filter-abused.csv
+          [ "$DIFFERENT_domainC2s_90day_filter_abused_CSV" = "true" ] && git add feeds/domainC2s-90day-filter-abused.csv
+          [ "$DIFFERENT_unverified_IPC2s_CSV" = "true" ] && git add feeds/unverified/IPC2s.csv
+          [ "$DIFFERENT_unverified_IPC2s_30day_CSV" = "true" ] && git add feeds/unverified/IPC2s-30day.csv
+          [ "$DIFFERENT_unverified_IPC2s_90day_CSV" = "true" ] && git add feeds/unverified/IPC2s-90day.csv
+          [ "$DIFFERENT_NordVPNIPs_CSV" = "true" ] && git add vpn/NordVPNIPs.csv
+          [ "$DIFFERENT_ProtonVPNIPs_CSV" = "true" ] && git add vpn/ProtonVPNIPs.csv
 
           git commit -m "Update CSV file"
 
