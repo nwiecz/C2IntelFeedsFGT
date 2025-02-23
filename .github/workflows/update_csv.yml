@@ -71,12 +71,12 @@ jobs:
 
           # Alle Dateien prüfen
           for file in "${!file_pairs[@]}"; do
-            if ! diff -q "new-$file" "$file" > /dev/null 2>&1; then
+            if ! diff -q "new-$file" "$file"; then
               echo "${file_pairs[$file]}=true" >> $GITHUB_ENV
-              echo "$file files are different."
+              echo "new-$file and $file files are different."
             else
               echo "${file_pairs[$file]}=false" >> $GITHUB_ENV
-              echo "$file files are the same. Skipping commit."
+              echo "new-$file and $file files are the same. Skipping commit."
             fi
           done
 
