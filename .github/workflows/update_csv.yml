@@ -40,22 +40,22 @@ jobs:
         id: strip-csv
         run: |
           cd C2IntelFeeds
-          ../../.local/bin/stripper -s 1 -e 1 -o ../feeds/new-IPC2s.csv feeds/IPC2s.csv
-          ../../.local/bin/stripper -s 1 -e 1 -o ../feeds/new-IPC2s-30day.csv feeds/IPC2s-30day.csv
-          ../../.local/bin/stripper -s 1 -e 1 -o ../feeds/new-IPC2s-90day.csv feeds/IPC2s-90day.csv
-          ../../.local/bin/stripper -s 1 -e 3 -o ../feeds/new-DNSC2Domains.csv feeds/DNSC2Domains.csv
-          ../../.local/bin/stripper -s 1 -e 3 -o ../feeds/new-DNSC2Domains-30day.csv feeds/DNSC2Domains-30day.csv
-          ../../.local/bin/stripper -s 1 -e 1 -o ../feeds/new-domainC2s.csv feeds/domainC2s.csv
-          ../../.local/bin/stripper -s 1 -e 1 -o ../feeds/new-domainC2s-filter-abused.csv feeds/domainC2s-filter-abused.csv
-          ../../.local/bin/stripper -s 1 -e 1 -o ../feeds/new-domainC2s-90day.csv feeds/domainC2s-90day.csv
-          ../../.local/bin/stripper -s 1 -e 1 -o ../feeds/new-domainC2s-90day-filter-abused.csv feeds/domainC2s-90day-filter-abused.csv
-          ../../.local/bin/stripper -s 1 -e 1 -o ../feeds/new-domainC2s-30day.csv feeds/domainC2s-30day.csv
-          ../../.local/bin/stripper -s 1 -e 1 -o ../feeds/new-domainC2s-30day-filter-abused.csv feeds/domainC2s-30day-filter-abused.csv
-          ../../.local/bin/stripper -s 1 -e 1 -o ../feeds/unverified/new-IPC2s.csv feeds/unverified/IPC2s.csv
-          ../../.local/bin/stripper -s 1 -e 1 -o ../feeds/unverified/new-IPC2s-30day.csv feeds/unverified/IPC2s-30day.csv
-          ../../.local/bin/stripper -s 1 -e 1 -o ../feeds/unverified/new-IPC2s-90day.csv feeds/unverified/IPC2s-90day.csv
-          ../../.local/bin/stripper -s 1 -e 1 -o ../vpn/new-NordVPNIPs.csv vpn/NordVPNIPs.csv
-          ../../.local/bin/stripper -s 1 -e 1 -o ../vpn/new-ProtonVPNIPs.csv vpn/ProtonVPNIPs.csv
+          stripper -s 1 -e 1 -o ../feeds/new-IPC2s.csv feeds/IPC2s.csv
+          stripper -s 1 -e 1 -o ../feeds/new-IPC2s-30day.csv feeds/IPC2s-30day.csv
+          stripper -s 1 -e 1 -o ../feeds/new-IPC2s-90day.csv feeds/IPC2s-90day.csv
+          stripper -s 1 -e 3 -o ../feeds/new-DNSC2Domains.csv feeds/DNSC2Domains.csv
+          stripper -s 1 -e 3 -o ../feeds/new-DNSC2Domains-30day.csv feeds/DNSC2Domains-30day.csv
+          stripper -s 1 -e 1 -o ../feeds/new-domainC2s.csv feeds/domainC2s.csv
+          stripper -s 1 -e 1 -o ../feeds/new-domainC2s-filter-abused.csv feeds/domainC2s-filter-abused.csv
+          stripper -s 1 -e 1 -o ../feeds/new-domainC2s-90day.csv feeds/domainC2s-90day.csv
+          stripper -s 1 -e 1 -o ../feeds/new-domainC2s-90day-filter-abused.csv feeds/domainC2s-90day-filter-abused.csv
+          stripper -s 1 -e 1 -o ../feeds/new-domainC2s-30day.csv feeds/domainC2s-30day.csv
+          stripper -s 1 -e 1 -o ../feeds/new-domainC2s-30day-filter-abused.csv feeds/domainC2s-30day-filter-abused.csv
+          stripper -s 1 -e 1 -o ../feeds/unverified/new-IPC2s.csv feeds/unverified/IPC2s.csv
+          stripper -s 1 -e 1 -o ../feeds/unverified/new-IPC2s-30day.csv feeds/unverified/IPC2s-30day.csv
+          stripper -s 1 -e 1 -o ../feeds/unverified/new-IPC2s-90day.csv feeds/unverified/IPC2s-90day.csv
+          stripper -s 1 -e 1 -o ../vpn/new-NordVPNIPs.csv vpn/NordVPNIPs.csv
+          stripper -s 1 -e 1 -o ../vpn/new-ProtonVPNIPs.csv vpn/ProtonVPNIPs.csv
 
       - name: Check for Differences
         id: check-differences
