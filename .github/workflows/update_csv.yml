@@ -50,126 +50,35 @@ jobs:
       - name: Check for Differences
         id: check-differences
         run: |
-          # IPC2s
-          if ! diff -q feeds/new-IPC2s.csv feeds/IPC2s.csv; then
-            echo "IPC2s CSV files are different."
-            echo "DIFFERENT_IPC2s_CSV=true" >> $GITHUB_ENV
-          else
-            echo "IPC2s CSV files are the same. Skipping commit."
-            echo "DIFFERENT_IPC2s_CSV=false" >> $GITHUB_ENV
-          fi
-          # IPC2s-30day
-          if ! diff -q feeds/new-IPC2s-30day.csv feeds/IPC2s-30day.csv; then
-            echo "IPC2s-30day CSV files are different."
-            echo "DIFFERENT_IPC2s_30day_CSV=true" >> $GITHUB_ENV
-          else
-            echo "IPC2s-30day CSV files are the same. Skipping commit."
-            echo "DIFFERENT_IPC2s_30day_CSV=false" >> $GITHUB_ENV
-          fi
-          # IPC2s-90day
-          if ! diff -q feeds/new-IPC2s-90day.csv feeds/IPC2s-90day.csv; then
-            echo "IPC2s-90day CSV files are different."
-            echo "DIFFERENT_IPC2s_90day_CSV=true" >> $GITHUB_ENV
-          else
-            echo "IPC2s-90day CSV files are the same. Skipping commit."
-            echo "DIFFERENT_IPC2s_90day_CSV=false" >> $GITHUB_ENV
-          fi
-          # DNSC2Domains
-          if ! diff -q feeds/new-DNSC2Domains.csv feeds/DNSC2Domains.csv; then
-            echo "DNSC2Domains CSV files are different."
-            echo "DIFFERENT_DNSC2Domains_CSV=true" >> $GITHUB_ENV
-          else
-            echo "DNSC2Domains CSV files are the same. Skipping commit."
-            echo "DIFFERENT_DNSC2Domains_CSV=false" >> $GITHUB_ENV
-          fi
-          # domainC2s
-          if ! diff -q feeds/new-domainC2s.csv feeds/domainC2s.csv; then
-            echo "domainC2s CSV files are different."
-            echo "DIFFERENT_domainC2s_CSV=true" >> $GITHUB_ENV
-          else
-            echo "domainC2s CSV files are the same. Skipping commit."
-            echo "DIFFERENT_domainC2s_CSV=false" >> $GITHUB_ENV
-          fi
-          # domainC2s-filter-abused
-          if ! diff -q feeds/new-domainC2s-filter-abused.csv feeds/domainC2s-filter-abused.csv; then
-            echo "domainC2s-filter-abused CSV files are different."
-            echo "DIFFERENT_domainC2s_filter_abused_CSV=true" >> $GITHUB_ENV
-          else
-            echo "domainC2s-filter-abused CSV files are the same. Skipping commit."
-            echo "DIFFERENT_domainC2s_filter_abused_CSV=false" >> $GITHUB_ENV
-          fi
-          # domainC2s-90day
-          if ! diff -q feeds/new-domainC2s-90day.csv feeds/domainC2s-90day.csv; then
-            echo "domainC2s-90day CSV files are different."
-            echo "DIFFERENT_domainC2s_90day_CSV=true" >> $GITHUB_ENV
-          else
-            echo "domainC2s-90day CSV files are the same. Skipping commit."
-            echo "DIFFERENT_domainC2s_90day_CSV=false" >> $GITHUB_ENV
-          fi
-          # domainC2s-30day
-          if ! diff -q feeds/new-domainC2s-30day.csv feeds/domainC2s-30day.csv; then
-            echo "domainC2s-30day CSV files are different."
-            echo "DIFFERENT_domainC2s_30day_CSV=true" >> $GITHUB_ENV
-          else
-            echo "domainC2s-30day CSV files are the same. Skipping commit."
-            echo "DIFFERENT_domainC2s_30day_CSV=false" >> $GITHUB_ENV
-          fi
-          # domainC2s-30day-filter-abused
-          if ! diff -q feeds/new-domainC2s-30day-filter-abused.csv feeds/domainC2s-30day-filter-abused.csv; then
-            echo "domainC2s-30day-filter-abused CSV files are different."
-            echo "DIFFERENT_domainC2s_30day_filter_abused_CSV=true" >> $GITHUB_ENV
-          else
-            echo "domainC2s-30day-filter-abused CSV files are the same. Skipping commit."
-            echo "DIFFERENT_domainC2s_30day_filter_abused_CSV=false" >> $GITHUB_ENV
-          fi
-          # domainC2s-90day-filter-abused
-          if ! diff -q feeds/new-domainC2s-90day-filter-abused.csv feeds/domainC2s-90day-filter-abused.csv; then
-            echo "domainC2s-90day-filter-abused CSV files are different."
-            echo "DIFFERENT_domainC2s_90day_filter_abused_CSV=true" >> $GITHUB_ENV
-          else
-            echo "domainC2s-90day-filter-abused CSV files are the same. Skipping commit."
-            echo "DIFFERENT_domainC2s_90day_filter_abused_CSV=false" >> $GITHUB_ENV
-          fi
-          # unverified/IPC2s
-          if ! diff -q feeds/unverified/new-IPC2s.csv feeds/unverified/IPC2s.csv; then
-            echo "unverified/IPC2s CSV files are different."
-            echo "DIFFERENT_unverified_IPC2s_CSV=true" >> $GITHUB_ENV
-          else
-            echo "unverified/IPC2s CSV files are the same. Skipping commit."
-            echo "DIFFERENT_unverified_IPC2s_CSV=false" >> $GITHUB_ENV
-          fi
-          # unverified/IPC2s-30day
-          if ! diff -q feeds/unverified/new-IPC2s-30day.csv feeds/unverified/IPC2s-30day.csv; then
-            echo "unverified/IPC2s-30day CSV files are different."
-            echo "DIFFERENT_unverified_IPC2s_30day_CSV=true" >> $GITHUB_ENV
-          else
-            echo "unverified/IPC2s-30day CSV files are the same. Skipping commit."
-            echo "DIFFERENT_unverified_IPC2s_30day_CSV=false" >> $GITHUB_ENV
-          fi
-          # unverified/IPC2s-90day
-          if ! diff -q feeds/unverified/new-IPC2s-90day.csv feeds/unverified/IPC2s-90day.csv; then
-            echo "unverified/IPC2s-90day CSV files are different."
-            echo "DIFFERENT_unverified_IPC2s_90day_CSV=true" >> $GITHUB_ENV
-          else
-            echo "unverified/IPC2s-90day CSV files are the same. Skipping commit." 
-            echo "DIFFERENT_unverified_IPC2s_90day_CSV=false" >> $GITHUB_ENV
-          fi
-          # NordVPNIPs
-          if ! diff -q vpn/new-NordVPNIPs.csv vpn/NordVPNIPs.csv; then
-            echo "NordVPNIPs CSV files are different."
-            echo "DIFFERENT_NordVPNIPs_CSV=true" >> $GITHUB_ENV
-          else
-            echo "NordVPNIPs CSV files are the same. Skipping commit."
-            echo "DIFFERENT_NordVPNIPs_CSV=false" >> $GITHUB_ENV
-          fi  
-          # ProtonVPNIPs
-          if ! diff -q vpn/new-ProtonVPNIPs.csv vpn/ProtonVPNIPs.csv; then
-            echo "ProtonVPNIPs CSV files are different."
-            echo "DIFFERENT_ProtonVPNIPs_CSV=true" >> $GITHUB_ENV
-          else
-            echo "ProtonVPNIPs CSV files are the same. Skipping commit."
-            echo "DIFFERENT_ProtonVPNIPs_CSV=false" >> $GITHUB_ENV
-          fi
+          # Array von Dateipaaren definieren
+          declare -A file_pairs=(
+            ["feeds/IPC2s.csv"]="DIFFERENT_IPC2s_CSV"
+            ["feeds/IPC2s-30day.csv"]="DIFFERENT_IPC2s_30day_CSV"
+            ["feeds/IPC2s-90day.csv"]="DIFFERENT_IPC2s_90day_CSV"
+            ["feeds/DNSC2Domains.csv"]="DIFFERENT_DNSC2Domains_CSV"
+            ["feeds/domainC2s.csv"]="DIFFERENT_domainC2s_CSV"
+            ["feeds/domainC2s-filter-abused.csv"]="DIFFERENT_domainC2s_filter_abused_CSV"
+            ["feeds/domainC2s-90day.csv"]="DIFFERENT_domainC2s_90day_CSV"
+            ["feeds/domainC2s-30day.csv"]="DIFFERENT_domainC2s_30day_CSV"
+            ["feeds/domainC2s-30day-filter-abused.csv"]="DIFFERENT_domainC2s_30day_filter_abused_CSV"
+            ["feeds/domainC2s-90day-filter-abused.csv"]="DIFFERENT_domainC2s_90day_filter_abused_CSV"
+            ["feeds/unverified/IPC2s.csv"]="DIFFERENT_unverified_IPC2s_CSV"
+            ["feeds/unverified/IPC2s-30day.csv"]="DIFFERENT_unverified_IPC2s_30day_CSV"
+            ["feeds/unverified/IPC2s-90day.csv"]="DIFFERENT_unverified_IPC2s_90day_CSV"
+            ["vpn/NordVPNIPs.csv"]="DIFFERENT_NordVPNIPs_CSV"
+            ["vpn/ProtonVPNIPs.csv"]="DIFFERENT_ProtonVPNIPs_CSV"
+          )
+
+          # Alle Dateien prüfen
+          for file in "${!file_pairs[@]}"; do
+            if ! diff -q "new-$file" "$file" > /dev/null 2>&1; then
+              echo "${file_pairs[$file]}=true" >> $GITHUB_ENV
+              echo "$file files are different."
+            else
+              echo "${file_pairs[$file]}=false" >> $GITHUB_ENV
+              echo "$file files are the same. Skipping commit."
+            fi
+          done
 
       - name: Overwrite CSV
         if: |
