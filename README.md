@@ -1,5 +1,5 @@
 # C2IntelFeedsFGT
-Automatically created C2 Feeds for FGT, based on https://github.com/drb-ra/C2IntelFeeds
+Automatically created C2 Feeds optimized for Fortigate `IP Address Threat Feed` and `Domain Name Threat Feed`, based on https://github.com/drb-ra/C2IntelFeeds
 
 
 # C2IntelFeeds
