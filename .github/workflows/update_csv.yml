@@ -37,10 +37,10 @@ jobs:
           stripper -s 1 -e 3 -o ../feeds/new-DNSC2Domains-30day.csv feeds/DNSC2Domains-30day.csv
           stripper -s 1 -e 1 -o ../feeds/new-domainC2s.csv feeds/domainC2s.csv
           stripper -s 1 -e 1 -o ../feeds/new-domainC2s-filter-abused.csv feeds/domainC2s-filter-abused.csv
-          stripper -s 1 -e 1 -o ../feeds/new-domainC2s-90day.csv feeds/domainC2s-90day.csv
-          stripper -s 1 -e 1 -o ../feeds/new-domainC2s-90day-filter-abused.csv feeds/domainC2s-90day-filter-abused.csv
           stripper -s 1 -e 1 -o ../feeds/new-domainC2s-30day.csv feeds/domainC2s-30day.csv
           stripper -s 1 -e 1 -o ../feeds/new-domainC2s-30day-filter-abused.csv feeds/domainC2s-30day-filter-abused.csv
+          stripper -s 1 -e 1 -o ../feeds/new-domainC2s-90day.csv feeds/domainC2s-90day.csv
+          stripper -s 1 -e 1 -o ../feeds/new-domainC2s-90day-filter-abused.csv feeds/domainC2s-90day-filter-abused.csv
           stripper -s 1 -e 1 -o ../feeds/unverified/new-IPC2s.csv feeds/unverified/IPC2s.csv
           stripper -s 1 -e 1 -o ../feeds/unverified/new-IPC2s-30day.csv feeds/unverified/IPC2s-30day.csv
           stripper -s 1 -e 1 -o ../feeds/unverified/new-IPC2s-90day.csv feeds/unverified/IPC2s-90day.csv
@@ -185,11 +185,12 @@ jobs:
           env.DIFFERENT_IPC2s_30day_CSV == 'true' ||
           env.DIFFERENT_IPC2s_90day_CSV == 'true' ||
           env.DIFFERENT_DNSC2Domains_CSV == 'true' ||
+          env.DIFFERENT_DNSC2Domains_30day_CSV == 'true' ||
           env.DIFFERENT_domainC2s_CSV == 'true' ||
           env.DIFFERENT_domainC2s_filter_abused_CSV == 'true' ||
-          env.DIFFERENT_domainC2s_90day_CSV == 'true' ||
           env.DIFFERENT_domainC2s_30day_CSV == 'true' ||
           env.DIFFERENT_domainC2s_30day_filter_abused_CSV == 'true' ||
+          env.DIFFERENT_domainC2s_90day_CSV == 'true' ||
           env.DIFFERENT_domainC2s_90day_filter_abused_CSV == 'true' ||
           env.DIFFERENT_unverified_IPC2s_CSV == 'true' ||
           env.DIFFERENT_unverified_IPC2s_30day_CSV == 'true' ||
@@ -197,21 +198,22 @@ jobs:
           env.DIFFERENT_NordVPNIPs_CSV == 'true' ||
           env.DIFFERENT_ProtonVPNIPs_CSV == 'true'
         run: |
-          [ "$DIFFERENT_IPC2s_CSV" = "true" ] && mv feeds/new-IPC2s.csv feeds/IPC2s.csv
-          [ "$DIFFERENT_IPC2s_30day_CSV" = "true" ] && mv feeds/new-IPC2s-30day.csv feeds/IPC2s-30day.csv
-          [ "$DIFFERENT_IPC2s_90day_CSV" = "true" ] && mv feeds/new-IPC2s-90day.csv feeds/IPC2s-90day.csv
-          [ "$DIFFERENT_DNSC2Domains_CSV" = "true" ] && mv feeds/new-DNSC2Domains.csv feeds/DNSC2Domains.csv
-          [ "$DIFFERENT_domainC2s_CSV" = "true" ] && mv feeds/new-domainC2s.csv feeds/domainC2s.csv
-          [ "$DIFFERENT_domainC2s_filter_abused_CSV" = "true" ] && mv feeds/new-domainC2s-filter-abused.csv feeds/domainC2s-filter-abused.csv
-          [ "$DIFFERENT_domainC2s_90day_CSV" = "true" ] && mv feeds/new-domainC2s-90day.csv feeds/domainC2s-90day.csv
-          [ "$DIFFERENT_domainC2s_30day_CSV" = "true" ] && mv feeds/new-domainC2s-30day.csv feeds/domainC2s-30day.csv
-          [ "$DIFFERENT_domainC2s_30day_filter_abused_CSV" = "true" ] && mv feeds/new-domainC2s-30day-filter-abused.csv feeds/domainC2s-30day-filter-abused.csv
-          [ "$DIFFERENT_domainC2s_90day_filter_abused_CSV" = "true" ] && mv feeds/new-domainC2s-90day-filter-abused.csv feeds/domainC2s-90day-filter-abused.csv
-          [ "$DIFFERENT_unverified_IPC2s_CSV" = "true" ] && mv feeds/unverified/new-IPC2s.csv feeds/unverified/IPC2s.csv
-          [ "$DIFFERENT_unverified_IPC2s_30day_CSV" = "true" ] && mv feeds/unverified/new-IPC2s-30day.csv feeds/unverified/IPC2s-30day.csv
-          [ "$DIFFERENT_unverified_IPC2s_90day_CSV" = "true" ] && mv feeds/unverified/new-IPC2s-90day.csv feeds/unverified/IPC2s-90day.csv
-          [ "$DIFFERENT_NordVPNIPs_CSV" = "true" ] && mv vpn/new-NordVPNIPs.csv vpn/NordVPNIPs.csv
-          [ "$DIFFERENT_ProtonVPNIPs_CSV" = "true" ] && mv vpn/new-ProtonVPNIPs.csv vpn/ProtonVPNIPs.csv
+          [ "$DIFFERENT_IPC2s_CSV" = "true" ] && mv feeds/new-IPC2s.csv feeds/IPC2s.csv && echo "IPC2s CSV replaced with new Version."
+          [ "$DIFFERENT_IPC2s_30day_CSV" = "true" ] && mv feeds/new-IPC2s-30day.csv feeds/IPC2s-30day.csv && echo "IPC2s-30day CSV replaced with new Version."
+          [ "$DIFFERENT_IPC2s_90day_CSV" = "true" ] && mv feeds/new-IPC2s-90day.csv feeds/IPC2s-90day.csv && echo "IPC2s-90day CSV replaced with new Version."
+          [ "$DIFFERENT_DNSC2Domains_CSV" = "true" ] && mv feeds/new-DNSC2Domains.csv feeds/DNSC2Domains.csv && echo "DNSC2Domains CSV replaced with new Version."
+          [ "$DIFFERENT_DNSC2Domains_30day_CSV" = "true" ] && mv feeds/new-DNSC2Domains-30day.csv feeds/DNSC2Domains-30day.csv && echo "DNSC2Domains-30day CSV replaced with new Version."
+          [ "$DIFFERENT_domainC2s_CSV" = "true" ] && mv feeds/new-domainC2s.csv feeds/domainC2s.csv && echo "domainC2s CSV replaced with new Version."
+          [ "$DIFFERENT_domainC2s_filter_abused_CSV" = "true" ] && mv feeds/new-domainC2s-filter-abused.csv feeds/domainC2s-filter-abused.csv && echo "domainC2s-filter-abused CSV replaced with new Version."
+          [ "$DIFFERENT_domainC2s_30day_CSV" = "true" ] && mv feeds/new-domainC2s-30day.csv feeds/domainC2s-30day.csv && echo "domainC2s-30day CSV replaced with new Version."
+          [ "$DIFFERENT_domainC2s_30day_filter_abused_CSV" = "true" ] && mv feeds/new-domainC2s-30day-filter-abused.csv feeds/domainC2s-30day-filter-abused.csv && echo "domainC2s-30day-filter-abused CSV replaced with new Version."
+          [ "$DIFFERENT_domainC2s_90day_CSV" = "true" ] && mv feeds/new-domainC2s-90day.csv feeds/domainC2s-90day.csv && echo "domainC2s-90day CSV replaced with new Version."
+          [ "$DIFFERENT_domainC2s_90day_filter_abused_CSV" = "true" ] && mv feeds/new-domainC2s-90day-filter-abused.csv feeds/domainC2s-90day-filter-abused.csv && echo "domainC2s-90day-filter-abused CSV replaced with new Version."
+          [ "$DIFFERENT_unverified_IPC2s_CSV" = "true" ] && mv feeds/unverified/new-IPC2s.csv feeds/unverified/IPC2s.csv && echo "unverified/IPC2s CSV replaced with new Version."
+          [ "$DIFFERENT_unverified_IPC2s_30day_CSV" = "true" ] && mv feeds/unverified/new-IPC2s-30day.csv feeds/unverified/IPC2s-30day.csv && echo "unverified/IPC2s-30day CSV replaced with new Version."
+          [ "$DIFFERENT_unverified_IPC2s_90day_CSV" = "true" ] && mv feeds/unverified/new-IPC2s-90day.csv feeds/unverified/IPC2s-90day.csv && echo "unverified/IPC2s-90day CSV replaced with new Version."
+          [ "$DIFFERENT_NordVPNIPs_CSV" = "true" ] && mv vpn/new-NordVPNIPs.csv vpn/NordVPNIPs.csv && echo "NordVPNIPs CSV replaced with new Version."
+          [ "$DIFFERENT_ProtonVPNIPs_CSV" = "true" ] && mv vpn/new-ProtonVPNIPs.csv vpn/ProtonVPNIPs.csv && echo "ProtonVPNIPs CSV replaced with new Version."
 
       - name: Commit and Push Changes
         if: |
@@ -219,11 +221,12 @@ jobs:
           env.DIFFERENT_IPC2s_30day_CSV == 'true' ||
           env.DIFFERENT_IPC2s_90day_CSV == 'true' ||
           env.DIFFERENT_DNSC2Domains_CSV == 'true' ||
+          env.DIFFERENT_DNSC2Domains_30day_CSV == 'true' ||
           env.DIFFERENT_domainC2s_CSV == 'true' ||
           env.DIFFERENT_domainC2s_filter_abused_CSV == 'true' ||
-          env.DIFFERENT_domainC2s_90day_CSV == 'true' ||  
           env.DIFFERENT_domainC2s_30day_CSV == 'true' ||
           env.DIFFERENT_domainC2s_30day_filter_abused_CSV == 'true' ||
+          env.DIFFERENT_domainC2s_90day_CSV == 'true' ||  
           env.DIFFERENT_domainC2s_90day_filter_abused_CSV == 'true' ||
           env.DIFFERENT_unverified_IPC2s_CSV == 'true' ||
           env.DIFFERENT_unverified_IPC2s_30day_CSV == 'true' ||
@@ -240,21 +243,22 @@ jobs:
           git checkout -b "$branch_name"
           
           # Nur geänderte Dateien hinzufügen
-          [ "$DIFFERENT_IPC2s_CSV" = "true" ] && git add feeds/IPC2s.csv
-          [ "$DIFFERENT_IPC2s_30day_CSV" = "true" ] && git add feeds/IPC2s-30day.csv
-          [ "$DIFFERENT_IPC2s_90day_CSV" = "true" ] && git add feeds/IPC2s-90day.csv
-          [ "$DIFFERENT_DNSC2Domains_CSV" = "true" ] && git add feeds/DNSC2Domains.csv
-          [ "$DIFFERENT_domainC2s_CSV" = "true" ] && git add feeds/domainC2s.csv
-          [ "$DIFFERENT_domainC2s_filter_abused_CSV" = "true" ] && git add feeds/domainC2s-filter-abused.csv
-          [ "$DIFFERENT_domainC2s_90day_CSV" = "true" ] && git add feeds/domainC2s-90day.csv
-          [ "$DIFFERENT_domainC2s_30day_CSV" = "true" ] && git add feeds/domainC2s-30day.csv
-          [ "$DIFFERENT_domainC2s_30day_filter_abused_CSV" = "true" ] && git add feeds/domainC2s-30day-filter-abused.csv
-          [ "$DIFFERENT_domainC2s_90day_filter_abused_CSV" = "true" ] && git add feeds/domainC2s-90day-filter-abused.csv
-          [ "$DIFFERENT_unverified_IPC2s_CSV" = "true" ] && git add feeds/unverified/IPC2s.csv
-          [ "$DIFFERENT_unverified_IPC2s_30day_CSV" = "true" ] && git add feeds/unverified/IPC2s-30day.csv
-          [ "$DIFFERENT_unverified_IPC2s_90day_CSV" = "true" ] && git add feeds/unverified/IPC2s-90day.csv
-          [ "$DIFFERENT_NordVPNIPs_CSV" = "true" ] && git add vpn/NordVPNIPs.csv
-          [ "$DIFFERENT_ProtonVPNIPs_CSV" = "true" ] && git add vpn/ProtonVPNIPs.csv
+          [ "$DIFFERENT_IPC2s_CSV" = "true" ] && git add feeds/IPC2s.csv && echo "IPC2s CSV added to staging area."
+          [ "$DIFFERENT_IPC2s_30day_CSV" = "true" ] && git add feeds/IPC2s-30day.csv && echo "IPC2s-30day CSV added to staging area."
+          [ "$DIFFERENT_IPC2s_90day_CSV" = "true" ] && git add feeds/IPC2s-90day.csv && echo "IPC2s-90day CSV added to staging area."
+          [ "$DIFFERENT_DNSC2Domains_CSV" = "true" ] && git add feeds/DNSC2Domains.csv && echo "DNSC2Domains CSV added to staging area."
+          [ "$DIFFERENT_DNSC2Domains_30day_CSV" = "true" ] && git add feeds/DNSC2Domains-30day.csv && echo "DNSC2Domains-30day CSV added to staging area."
+          [ "$DIFFERENT_domainC2s_CSV" = "true" ] && git add feeds/domainC2s.csv && echo "domainC2s CSV added to staging area."
+          [ "$DIFFERENT_domainC2s_filter_abused_CSV" = "true" ] && git add feeds/domainC2s-filter-abused.csv && echo "domainC2s-filter-abused CSV added to staging area."
+          [ "$DIFFERENT_domainC2s_30day_CSV" = "true" ] && git add feeds/domainC2s-30day.csv && echo "domainC2s-30day CSV added to staging area."
+          [ "$DIFFERENT_domainC2s_30day_filter_abused_CSV" = "true" ] && git add feeds/domainC2s-30day-filter-abused.csv && echo "domainC2s-30day-filter-abused CSV added to staging area."
+          [ "$DIFFERENT_domainC2s_90day_CSV" = "true" ] && git add feeds/domainC2s-90day.csv && echo "domainC2s-90day CSV added to staging area."
+          [ "$DIFFERENT_domainC2s_90day_filter_abused_CSV" = "true" ] && git add feeds/domainC2s-90day-filter-abused.csv && echo "domainC2s-90day-filter-abused CSV added to staging area."
+          [ "$DIFFERENT_unverified_IPC2s_CSV" = "true" ] && git add feeds/unverified/IPC2s.csv && echo "unverified/IPC2s CSV added to staging area."
+          [ "$DIFFERENT_unverified_IPC2s_30day_CSV" = "true" ] && git add feeds/unverified/IPC2s-30day.csv && echo "unverified/IPC2s-30day CSV added to staging area."
+          [ "$DIFFERENT_unverified_IPC2s_90day_CSV" = "true" ] && git add feeds/unverified/IPC2s-90day.csv && echo "unverified/IPC2s-90day CSV added to staging area."
+          [ "$DIFFERENT_NordVPNIPs_CSV" = "true" ] && git add vpn/NordVPNIPs.csv && echo "NordVPNIPs CSV added to staging area."
+          [ "$DIFFERENT_ProtonVPNIPs_CSV" = "true" ] && git add vpn/ProtonVPNIPs.csv && echo "ProtonVPNIPs CSV added to staging area."
 
           # Nur committen wenn es Änderungen gibt
           if git diff --staged --quiet; then
