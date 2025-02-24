@@ -1,6 +1,8 @@
 # C2IntelFeedsFGT
 Automatically created C2 Feeds optimized for Fortigate `IP Address Threat Feed` and `Domain Name Threat Feed`, based on https://github.com/drb-ra/C2IntelFeeds
 
+[![Release](https://github.com/nwiecz/C2IntelFeedsFGT/actions/workflows/update_csv.yml/badge.svg)](https://github.com/nwiecz/C2IntelFeedsFGT/actions/workflows/update_csv.yml)
+
 
 # C2IntelFeeds
 Automatically created C2 Feeds | Also posted via [@drb_ra](https://twitter.com/drb_ra)
