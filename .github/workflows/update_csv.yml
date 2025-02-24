@@ -214,6 +214,7 @@ jobs:
           [ "$DIFFERENT_unverified_IPC2s_90day_CSV" = "true" ] && mv feeds/unverified/new-IPC2s-90day.csv feeds/unverified/IPC2s-90day.csv && echo "unverified/IPC2s-90day CSV replaced with new Version."
           [ "$DIFFERENT_NordVPNIPs_CSV" = "true" ] && mv vpn/new-NordVPNIPs.csv vpn/NordVPNIPs.csv && echo "NordVPNIPs CSV replaced with new Version."
           [ "$DIFFERENT_ProtonVPNIPs_CSV" = "true" ] && mv vpn/new-ProtonVPNIPs.csv vpn/ProtonVPNIPs.csv && echo "ProtonVPNIPs CSV replaced with new Version."
+          echo "CSV updated successfully."
 
       - name: Commit and Push Changes
         if: |
